@@ -1,0 +1,25 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "Generates a team profile for employees of a company",
+  "main": "Index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aksmith5239/team-profile-generator.git"
+  },
+  "author": "Allison K. Smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aksmith5239/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/aksmith5239/team-profile-generator#readme",
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
+}
