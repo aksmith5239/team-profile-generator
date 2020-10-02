@@ -1,0 +1,40 @@
+:root {
+    --primary:#133A70;
+    --secondary:#B03215;
+    --tertiary:#E69512;
+    --light:#F8F7F5;
+    --dark:#07162B;
+    --light-blue: #577399;
+    --light-tan: #C9BFAF;
+
+}
+
+*{
+    box-sizing: border-box;
+    font-family: Ariel, Helvitica, sans-serif;
+
+}
+
+header {
+  background-color: var(--primary);
+  color: var(--light);
+  text-align: center;
+  padding: 20px;
+  font-weight: bolder;
+
+}
+
+.engineer{
+  background-color: var(--secondary);
+  color:var(--light);
+}
+
+.manager{
+  background-color: var(--tertiary);
+  color:var(--light);
+}
+
+.intern{
+  background-color: var(--light-tan);
+  color:var(--primary);
+}
