@@ -7,7 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node Index.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
   "homepage": "https://github.com/aksmith5239/team-profile-generator#readme",
   "devDependencies": {
     "jest": "^26.4.2"
+  },
+  "dependencies": {
+    "inquirer": "^7.3.3"
   }
 }
