@@ -5,6 +5,9 @@
 
 ## Description
 A command line application where the user will be prompted for team members and their information. When the information has been obtained, an HTML file is generated that displays the team in a nicely formatted team roster. When an email address is clicked the default email program opens and populates the to field with the email address, when the github username is clicked then the github profile opens in a new tab. 
+
+<img src="./src/MyTeamSS.png" height='300' width='500'>
+
 ***
 ## Table of Contents
 [Installation](#installation)<br>
