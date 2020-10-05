@@ -65,9 +65,7 @@ const promptManager = () => {
     ])
     .then(answers =>  {
         const managerInfo = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-        // console.log(managerInfo);
         teamData.push(managerInfo);
-        // console.log(teamData);
         promptEngineer();
     })
 };
@@ -139,7 +137,6 @@ const promptEngineer = () => {
     .then(answers =>  {
         const engineerInfo = new Engineer(answers.name, answers.id, answers.email, answers.gitHub);
         teamData.push(engineerInfo);
-        // console.log(teamData);
         if(answers.confirmAddEmployee) {
             return promptEngineer();
         } else {
@@ -228,25 +225,8 @@ const promptIntern = () => {
 };
 
 function createMyTeam() {
-    // console.log(teamData);
     fs.writeFileSync('./dist/index.html', generateTemplate(teamData), "utf-8");
 }
 promptManager()
 
-    // .then(employeeData => {
-    //     teamData.employee.push(employeeData);
-    //     if(employeeData.confirmAddEmployee) {
-    //         return promptEmployee(teamData);
-    //     } else {
-    //         return teamData;
-    //     }
-    // });
-
-
-
- 
-    // .then(teamData => {
-    //     console.log(teamData);
-    //     return generateTeam(teamData);
-    // });
 
