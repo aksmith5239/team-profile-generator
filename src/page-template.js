@@ -55,6 +55,7 @@ const createIntern = intern => {
 `
 };
 
+
 const createHTML = [];
 
 createHTML.push(profile.filter(employee => employee.getRole() === 'Manager')
