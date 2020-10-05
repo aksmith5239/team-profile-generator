@@ -23,6 +23,8 @@ The application starting point is node index.js.
 ## Usage
 The user will be prompted to enter the team mananger's name, employee id, email address and office number. When the engineer option is chosen the user will be prompted to enter the engineers information and the same for intern if the intern option is chosen. When all team members have been entered the HTML roster will be created. 
 
+https://drive.google.com/file/d/1kPXSjJSKvN5DNKc4NB--GZY-I9vboTGA/view
+
 ## Contributing
 
 
