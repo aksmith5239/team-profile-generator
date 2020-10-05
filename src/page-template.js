@@ -10,7 +10,7 @@ const createManager = manager => {
     </div>
     <div class='card-body '>
         <ul class='list-group'>
-            <li class='list-group-item'>${manager.getId()}</li>
+            <li class='list-group-item'>ID: ${manager.getId()}</li>
             <li class='list-group-item'>${manager.getEmail()}</li>
             <li class='list-group-item'>Office #: ${manager.getOfficeNumber()}</li>
         </ul>
@@ -28,7 +28,7 @@ const createEngineer = engineer => {
     </div>
     <div class='card-body '>
         <ul class='list-group'>
-            <li class='list-group-item'>${engineer.getId()}</li>
+            <li class='list-group-item'>ID: ${engineer.getId()}</li>
             <li class='list-group-item'>${engineer.getEmail()}</li>
             <li class='list-group-item'>GitHub Username: ${engineer.getGitHub()}</li>
         </ul>
@@ -46,7 +46,7 @@ const createIntern = intern => {
     </div>
     <div class='card-body '>
         <ul class='list-group'>
-            <li class='list-group-item'>${intern.getId()}</li>
+            <li class='list-group-item'>ID: ${intern.getId()}</li>
             <li class='list-group-item'>${intern.getEmail()}</li>
             <li class='list-group-item'>School: ${intern.getSchool()}</li>
         </ul>
