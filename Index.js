@@ -1,9 +1,11 @@
 const inquirer = require('inquirer');
-
+const fs = require('fs');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generateTemplate = require('./src/page-template');
 
+const teamData = [];
 const promptManager = () => {
     return inquirer.prompt([
         {
@@ -59,21 +61,24 @@ const promptManager = () => {
                     return false;
             }
         }
-    },    
-    ]);
+    }    
+    ])
+    .then(answers =>  {
+        const managerInfo = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        // console.log(managerInfo);
+        teamData.push(managerInfo);
+        // console.log(teamData);
+        promptEngineer();
+    })
 };
 
-const promptEmployee = (teamData)=> {
+const promptEngineer = () => {
     console.log(`
-    =====================
-    Enter a New Employee
-    =====================
-    `);
-    if(!teamData.employee) {
-        teamData.employee = [];
-    }
-    
-
+        =====================
+        Let's Add Our Engineers
+        =====================
+        `);
+ 
     return inquirer
     .prompt([
         {
@@ -116,63 +121,132 @@ const promptEmployee = (teamData)=> {
             }
         }
     },  
-    {
-        type: 'confirm',
-        name: 'defineEngineer',
-        message: 'Is the Employee an Engineer?',
-        default: false  
-    }, 
+   
         {
             type: 'input',
-            name: 'roleEngineer',
+            name: 'gitHub',
             message: "Enter the Engineer's GitHub username",
-            when: ({defineEngineer}) => {
-                if(defineEngineer) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+       
         },
-        {
-            type: 'confirm',
-            name: 'defineIntern',
-            message: 'Is the Employee an Intern?',
-            default: false  
-        }, 
-
-        {
-            type: 'input',
-            name: 'roleIntern',
-            message: "Enter the Intern's school",
-            when: ({defineIntern}) => {
-                if(defineIntern) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }, 
+   
         {
             type: 'confirm',
             name: 'confirmAddEmployee',
-            message: 'Would you like to enter another team member?',
+            message: 'Would you like to enter another Engineer?',
             default: false
         }
     ])
-    .then(employeeData => {
-        teamData.employee.push(employeeData);
-        if(employeeData.confirmAddEmployee) {
-            return promptEmployee(teamData);
+    .then(answers =>  {
+        const engineerInfo = new Engineer(answers.name, answers.id, answers.email, answers.gitHub);
+        teamData.push(engineerInfo);
+        // console.log(teamData);
+        if(answers.confirmAddEmployee) {
+            return promptEngineer();
         } else {
-            return teamData;
+            return promptIntern();
         }
     });
-};
-promptManager()
-    .then(promptEmployee)
-    .then(teamData => {
-        console.log(teamData);
-        // return generateTeam(teamData);
+}
+ 
+const promptIntern = () => {
+    console.log(`
+        =====================
+        Let's Add Our Interns
+        =====================
+        `);
+ 
+    return inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: "What is the employee's name? (Required)",
+            validate: nameInput => {
+                if(nameInput) {
+                    return true;
+                }
+                else {
+                    console.log("Please enter the employee's name:");
+                    return false;
+                }
+            }
+    }, 
+    {
+        type: 'input',
+        name: 'id',
+        message: "Enter employee's employee ID: (Required)",
+        validate: employeeID => {
+            if(employeeID) {
+                return true;
+            } else {
+                console.log("Please enter the employee's id:");
+                    return false;
+            }
+        }
+    }, 
+    {
+        type: 'input',
+        name: 'email',
+        message: "Enter employee's email address: (Required)",
+        validate: employeeEmail => {
+            if(employeeEmail) {
+                return true;
+            } else {
+                console.log("Please enter the employee's email address:");
+                    return false;
+            }
+        }
+    },  
+   
+        {
+            type: 'input',
+            name: 'school',
+            message: "Enter the Intern's School",
+           
+        },
+       
+        {
+            type: 'confirm',
+            name: 'confirmAddEmployee',
+            message: 'Would you like to enter another Intern?',
+            default: false
+        }
+    ])
+    .then(answers =>  {
+        const internInfo = new Intern(answers.name, answers.id, answers.email, answers.school);
+        teamData.push(internInfo);
+       
+        if(answers.confirmAddEmployee) {
+            return promptIntern();
+            
+        } else {
+           
+            return createMyTeam(teamData);
+           
+        } 
     });
+};
+
+function createMyTeam() {
+    // console.log(teamData);
+    fs.writeFileSync('./dist/index.html', generateTemplate(teamData), "utf-8");
+}
+promptManager()
+
+    // .then(employeeData => {
+    //     teamData.employee.push(employeeData);
+    //     if(employeeData.confirmAddEmployee) {
+    //         return promptEmployee(teamData);
+    //     } else {
+    //         return teamData;
+    //     }
+    // });
+
+
+
+ 
+    // .then(teamData => {
+    //     console.log(teamData);
+    //     return generateTeam(teamData);
+    // });
 

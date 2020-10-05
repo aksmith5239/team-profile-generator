@@ -21,8 +21,6 @@ test('gets engineer github username', () => {
 test('creates the getRole function', () => {
     const engineer = new Engineer('M', 'MI6', 'm@email.com', 'github');
 
-    expect(engineer.getRole()).toHaveProperty('name');
-    expect(engineer.getRole()).toHaveProperty('id');
-    expect(engineer.getRole()).toHaveProperty('email');
-    expect(engineer.getRole()).toHaveProperty('github');
+    expect(engineer.getRole()).toBe('Engineer');
+    
 });

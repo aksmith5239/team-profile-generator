@@ -13,8 +13,6 @@ test('creates manager as a new object', () => {
 test('creates the getRole function for manager', () => {
     const manager = new Manager('M', 'MI6', 'm@email.com', '300');
 
-    expect(manager.getRole()).toHaveProperty('name');
-    expect(manager.getRole()).toHaveProperty('id');
-    expect(manager.getRole()).toHaveProperty('email');
-    expect(manager.getRole()).toHaveProperty('officeNumber');
+    expect(manager.getRole()).toBe('Manager');
+    
 });
